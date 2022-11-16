@@ -22,6 +22,8 @@ public class Main {
     	
     	Map<String, Integer> map1 = new HashMap<>() ;
     	Map<String, Pair> map2 = new HashMap<>();
+    	double totalCollectionAirport = 0.0;
+    	double totalCollectionCentral = 0.0;
     	
     	while(true) {
     		String input = br.readLine();
@@ -38,13 +40,21 @@ public class Main {
     		}
     		String result[] = actionType.perform(arr);
     		if(actionType.toString().equals("PRINT_SUMMARY")) {
-    			BillSummary.genereateBill(map1, map2);
+//    			BillSummary.genereateBill(map1, map2);
     		}
     		else if(actionType.toString().equals("BALANCE")){
     			map1.put(result[0], Integer.parseInt(result[1]));
     		}
     		else {
     			PassengerType passengerType = PassengerType.valueOf(result[1]);
+    			if(result[2].equals("CENTRAL")) {
+    				totalCollectionCentral = BillSummary.getCostCentral(result, map1);
+    				System.out.println("central="+totalCollectionCentral);
+    			}
+    			else {
+    				totalCollectionAirport = BillSummary.getCostAirport(result, map1);
+    				System.out.println("Airport="+totalCollectionAirport);
+    			}
     			map2.put(result[0], new Pair(passengerType, result[2]));
     		}
     	}
