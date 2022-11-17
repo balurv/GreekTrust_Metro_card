@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -22,8 +24,14 @@ public class Main {
     	
     	Map<String, Integer> map1 = new HashMap<>() ;
     	Map<String, Pair> map2 = new HashMap<>();
-    	double totalCollectionAirport = 0.0;
-    	double totalCollectionCentral = 0.0;
+    	
+    	Set<String> centralCheckIn = new HashSet<>();
+    	Set<String> airportCheckIn = new HashSet<>();
+    	
+    	int totalCollectionAirport = 0;
+    	int totalCollectionCentral = 0;
+    	int collectionAirport = 0;
+    	int collectionCentral = 0;
     	
     	while(true) {
     		String input = br.readLine();
@@ -48,15 +56,21 @@ public class Main {
     		else {
     			PassengerType passengerType = PassengerType.valueOf(result[1]);
     			if(result[2].equals("CENTRAL")) {
-    				totalCollectionCentral = BillSummary.getCostCentral(result, map1);
+    				centralCheckIn.add(result[0]);
+    				collectionCentral = BillSummary.getCost(result, map1, airportCheckIn);
+    				totalCollectionCentral += collectionCentral;
     				System.out.println("central="+totalCollectionCentral);
     			}
     			else {
-    				totalCollectionAirport = BillSummary.getCostAirport(result, map1);
+    				airportCheckIn.add(result[0]);
+    				collectionAirport = BillSummary.getCost(result, map1, centralCheckIn);
+    				totalCollectionAirport += collectionAirport;
     				System.out.println("Airport="+totalCollectionAirport);
     			}
     			map2.put(result[0], new Pair(passengerType, result[2]));
     		}
     	}
+    	System.out.println("total Central Collection "+totalCollectionCentral);
+    	System.out.println("total Airport Collection "+totalCollectionAirport);
     }
 }
