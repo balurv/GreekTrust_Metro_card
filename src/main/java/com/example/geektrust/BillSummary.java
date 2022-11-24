@@ -16,7 +16,7 @@ public class BillSummary {
 			map1.put(result[0], balance - cost);
 		}
 		else {
-			System.out.println("need to focus here  ");
+//			System.out.println("need to focus here  ");
 			return cost + ((cost - balance) * 2 / 100);
 		}
 		return cost;

@@ -1,10 +1,10 @@
 package com.example.geektrust;
 
-public class Pair {
+public class PassengerSource {
 	PassengerType passengerType;
 	String source;
 	
-	Pair(PassengerType passengerType,String source){
+	PassengerSource(PassengerType passengerType,String source){
 		this.passengerType = passengerType;
 		this.source = source;
 	}
