@@ -53,11 +53,10 @@ public class Main {
 			String result[] = actionType.perform(arr);
 			
 			if (actionType.toString().equals("PRINT_SUMMARY")) {
-				System.out.println("TOTAL_COLLECTION CENTRAL " + totalCollectionCentral);
-				PrintPassengerSummary.print(centralPassenger, metroCardPassengerSource);
-				System.out.println("TOTAL_COLLECTION AIRPORT " + totalCollectionAirport);
-				PrintPassengerSummary.print(airportPassenger, metroCardPassengerSource);
-
+				System.out.print("TOTAL_COLLECTION CENTRAL " );
+				PrintPassengerSummary.printPassenger(centralPassenger, metroCardPassengerSource, "CENTRAL");
+				System.out.print("TOTAL_COLLECTION AIRPORT ");
+				PrintPassengerSummary.printPassenger(airportPassenger, metroCardPassengerSource, "AIRPORT");
 			} else if (actionType.toString().equals("BALANCE")) {
 				map1.put(result[0], Integer.parseInt(result[1]));
 			} else {

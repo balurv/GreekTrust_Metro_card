@@ -15,34 +15,14 @@ public class PrintPassengerSummary {
 			this.num = num;
 		}
 	}
-	public static void print(int kid, int adult, int senior) {
-		List<Pair> list = new ArrayList<>();
-		list.add(new Pair("KID", kid));
-		list.add(new Pair("ADULT", adult));
-		list.add(new Pair("SENIOR_CITIZEN", senior));
-    	Collections.sort(list, new Comparator<Pair>() {
-
-			@Override
-			public int compare(Pair p1, Pair p2) {
-				if(p2.num == p1.num) {
-					return p1.name.compareTo(p2.name);
-				}
-				return p2.num - p1.num;
-			}
-		});
-		
-		System.out.println("PASSENGER_TYPE_SUMMARY");
-		for(int i = 0; i < list.size(); i++) {
-			if(list.get(i).num > 0) {
-				System.out.println(list.get(i).name+" "+ list.get(i).num);
-			}
-		}
-	}
-	public static void print(int[] centralPassenger, Map<String, List<PassengerSource>> metroCardPassengerSource) {
+	public static void printPassenger(int[] passenger, Map<String, List<PassengerSource>> metroCardPassengerSource, String source) {
+		int totalCollection = calculateCollection(source, metroCardPassengerSource);
+		int discount = calculateDiscount(source,metroCardPassengerSource);
+		System.out.println(totalCollection+" "+discount);
 		List<Pair> list = new ArrayList<>();
 		PassengerType[] passengerTypesValue = PassengerType.values();
-		for(int i = 0; i < centralPassenger.length; i++) {
-			list.add(new Pair(passengerTypesValue[i].toString(),centralPassenger[i]));
+		for(int i = 0; i < passenger.length; i++) {
+			list.add(new Pair(passengerTypesValue[i].toString(),passenger[i]));
 		}
 		Collections.sort(list, new Comparator<Pair>() {
 
@@ -60,5 +40,15 @@ public class PrintPassengerSummary {
 				System.out.println(list.get(i).name+" "+ list.get(i).num);
 			}
 		}
+	}
+	
+	private static int calculateCollection(String source, Map<String, List<PassengerSource>> metroCardPassengerSource) {
+		return 0;
+	}
+
+	private static int calculateDiscount(String source, Map<String, List<PassengerSource>> metroCardPassengerSource) {
+//		if()
+//		System.out.println(metroCardPassengerSource);
+		return 0;
 	}
 }
